@@ -17,6 +17,8 @@ class HttpHandler:
         sess.verify = False
         return sess
 
+
+    # написать метод для первостепенной проверки конекта
     def get_fw_rules(self):
         return self.sn.get(f"http://{self.address}/api/v1/firewall/nat/port_forward")
 

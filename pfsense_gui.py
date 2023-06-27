@@ -25,6 +25,7 @@ from flet import (
     margin,
     SnackBar,
     TextField,
+    WEB_BROWSER
 )
 
 # from ui import
