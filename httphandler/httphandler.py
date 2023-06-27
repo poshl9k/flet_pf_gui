@@ -18,7 +18,24 @@ class HttpHandler:
         return sess
 
     def get_fw_rules(self):
-        return self.sn.get(f"http://{self.address}/api/v1/firewall/rule")
+        return self.sn.get(f"http://{self.address}/api/v1/firewall/nat/port_forward")
+
+    def set_fw_rules(
+        self,
+        rules,
+        disable=None,
+    ):
+        data = {
+            "id": rules["id"],
+            "apply": True,
+        }
+        if not disable:
+            data["disabled"] = False
+        else:
+            data["disabled"] = True
+        return self.sn.put(
+            f"http://{self.address}/api/v1/firewall/nat/port_forward", data=data
+        )
 
 
 # tests
