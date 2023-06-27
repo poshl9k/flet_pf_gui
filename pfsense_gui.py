@@ -23,11 +23,13 @@ from flet import (
     Scale,
     Icon,
     margin,
+    SnackBar,
 )
 
 # from ui import
 from utils import ScreenRes
 from event_handler import EventHandler as eh
+from httphandler import HttpHandler
 
 VERSION = "v 0.1"
 SCREEN_RESOLUTION = ScreenRes().resolution
@@ -35,13 +37,18 @@ SCREEN_RESOLUTION = ScreenRes().resolution
 
 class PfsenseApiApp(UserControl):
     def build(self):
-        self.status_text = Text("Выключены", size=25, color=colors.RED_300)
+        self.http_session = None
+
+        self.cameras_status_text = Text("Статус неизвестен, нет подключения", size=25, color=colors.RED_300)
+        self.router_status = Text("")
+        # Alert instance
+        self.alert = SnackBar(content=Text(""))
 
         self.first_row = Container(
             content=Row(
                 controls=[
                     Text(f"Видеокамеры ЦОК сейчас", size=25),
-                    self.status_text,
+                    self.cameras_status_text,
                 ]
             ),
             padding=5,
@@ -52,6 +59,7 @@ class PfsenseApiApp(UserControl):
             controls=[
                 ElevatedButton(
                     # width=300,
+                    data="Connect_to_router",
                     on_click=self.button_clicked,
                     height=150,
                     style=ButtonStyle(shape=RoundedRectangleBorder(radius=2)),
@@ -64,10 +72,11 @@ class PfsenseApiApp(UserControl):
                 ),
             ],
         )
+        self.get_router_status()
         self.secont_row_second_column = Column(
             controls=[
                 Text(value="Статус подключения:", size=15, text_align=TextAlign.START),
-                self.router_status(),
+                self.router_status,
             ]
         )
         self.second_row = Container(
@@ -78,28 +87,29 @@ class PfsenseApiApp(UserControl):
             margin=margin.all(1),
         )
         self.divider_row = Row(controls=[Divider(height=5)])
-     
 
         self.layout = [
             Column(
                 controls=[
                     self.first_row,
                     self.second_row,
+                    self.alert,
                 ]
             )
         ]
         return self.layout
 
-    def router_status(self, api=None):
+    def get_router_status(self):
         """
         Purpose: self
         """
-        router_status = "Не подключено"
-        return Text(
-            value=f"{router_status}",
-            size=25,
-            text_align=TextAlign.CENTER,
-        )
+        if self.http_session == None:
+            router_status = "Не подключено"
+            self.router_status.color = colors.RED_400
+        else:
+            router_status = "Подключено"
+            self.router_status.color = colors.GREEN_400
+        self.router_status.value = router_status
 
     def button_clicked(self, e):
         eh().handle_event(self, e)

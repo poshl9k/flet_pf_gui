@@ -25,6 +25,6 @@ from flet import (
 
 
 
-class Ui():
+class Ui(UserControl):
     
     pass
