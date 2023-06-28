@@ -2,7 +2,7 @@
 https://flet.dev/  
 
 Запакован в exe с помощью fleet pack  
-    pip install pyinstaller  
+    pip install flet  
     или  
     pip install -r .\requirements.txt  
 ```powershell
