@@ -49,7 +49,7 @@ class PfsenseApiApp(UserControl):
         
         # Alert instance
         self.alert = SnackBar(content=Text(""))
-        self.default_nat_description = "miha-m-from-home"
+        self.default_nat_description = self.eh.cf.rule_desc
         self.nat_rule_desc_input = TextField(
             border_color=colors.WHITE12,
             bgcolor=colors.WHITE24,

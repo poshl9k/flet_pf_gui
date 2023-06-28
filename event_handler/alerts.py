@@ -10,3 +10,4 @@ class Alerts:
     already_connected = ("Уже подключено!",colors.GREEN_400)
     successfully_enabled = ("Доступ успешно включен",colors.GREEN_400)
     successfully_disabled = ("Доступ успешно выключен",colors.GREEN_400)
+    no_rules_found = ("Не найдено правил по описанию! Поправьте конфигурационный файл!",colors.RED_400)

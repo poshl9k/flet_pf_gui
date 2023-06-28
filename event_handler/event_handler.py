@@ -30,6 +30,7 @@ import json
 from .alerts import Alerts
 import asyncio
 from threading import Thread
+from config import Config
 
 
 class EventHandler:
@@ -43,6 +44,7 @@ class EventHandler:
         self.nat_rules = list()
         self.nat_rule_desc = ""
         self.router_status = None
+        self.cf = Config()
 
     def handle_event(self, event):
         data = event.control.data
@@ -69,7 +71,9 @@ class EventHandler:
 
     def connect_to_router(self):
         if not self.http_session:
-            self.http_session = HttpHandler("192.168.10.8", "admin", "123qwe123***")
+            self.http_session = HttpHandler(
+                self.cf.ipaddress, self.cf.login, self.cf.password
+            )
             # self.check_connection()
             self.get_router_status()
             self.get_fw_rule_status()
@@ -90,7 +94,11 @@ class EventHandler:
             x["rule_status"] for x in self.nat_rules if x["rule_status"] == "disabled"
         ]
         if not self.nat_rules or len(self.nat_rules) == 0:
-            return
+            self.gui.cameras_status_text.value = (
+                "Проверьте пункт rule-desc в файле конфигурации"
+            )
+            self.gui.cameras_status_text.color = colors.RED_500
+            return self.alert(*Alerts.no_rules_found)
         if len(disabled) > 0:
             self.gui.cameras_status_text.value = "Выключены"
             self.gui.cameras_status_text.color = colors.RED_400
@@ -122,6 +130,8 @@ class EventHandler:
     def set_fw_nat_rule_disable(self, rules):
         if not self.http_session:
             return self.alert(*Alerts.no_session)
+        if len(rules) == 0:
+            return self.alert(*Alerts.no_rules_found)
         response = self.http_session.set_fw_rules(rules, disable=True)
         if response[0].status_code == 200:
             self.alert(*Alerts.successfully_disabled)
@@ -134,7 +144,8 @@ class EventHandler:
     def set_fw_nat_rule_enable(self, rules):
         if not self.http_session:
             return self.alert(*Alerts.no_session)
-
+        if len(rules) == 0:
+            return self.alert(*Alerts.no_rules_found)
         response = self.http_session.set_fw_rules(rules, disable=False)
         if response[0].status_code == 200:
             self.alert(*Alerts.successfully_enabled)
