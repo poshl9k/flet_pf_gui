@@ -11,10 +11,11 @@
 В файл spec был добавлен код для копирования конфиг файла, в целом он не сильно нужен, так как создается в случае отсутствия
 
 # КОД
+```
 import shutil
 
 shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
-#
+```
 Запаковка:
     pyinstaller --clean .\pfsense_cam_control.spec
 
@@ -48,6 +49,6 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
         Если же поле "rule-desc" будет "fuu bar",
         То под фильтр попадет лишь одно правило -> "fuu bar camera-control"
 
-        
+
         
 
