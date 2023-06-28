@@ -25,7 +25,7 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
     Это обычный файл .json
     !Все значения должны быть в кавычках!
 #    Структура:
-```
+```json
 {
 "address": "192.168.0.1",
 "login": "admin",
@@ -33,10 +33,10 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
 "rule-desc": "home to VM-cisco-mgmt"
 }
 ```
- address - IP адрес
- login - Логин от роутера
- password - Пароль от роутера
- rule-desc - описание правила на роутере
+==address - IP адрес==
+==login - Логин от роутера==
+==password - Пароль от роутера==
+==rule-desc - описание правила на роутере==
 
 # Про описание:
     Если правило одно - рекомендую писать точно, копируя описание из правила на роутере
