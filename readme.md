@@ -1,10 +1,10 @@
 # GUI Сделан с помощью flet  
 https://flet.dev/  
 
-Запакован в exe с помощью fleet pack
-    pip install pyinstaller
-    или 
-    pip install -r .\requirements.txt
+Запакован в exe с помощью fleet pack  
+    pip install pyinstaller  
+    или  
+    pip install -r .\requirements.txt  
 ```powershell
 flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
 ```
