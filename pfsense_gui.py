@@ -25,13 +25,15 @@ from flet import (
     margin,
     SnackBar,
     TextField,
-    WEB_BROWSER
+    WEB_BROWSER,
+    AppBar,
+    PopupMenuItem,
+    PopupMenuButton,
 )
 
 # from ui import
 from utils import ScreenRes
 from event_handler import EventHandler
-from httphandler import HttpHandler
 
 VERSION = "v 0.1"
 SCREEN_RESOLUTION = ScreenRes().resolution
@@ -43,8 +45,8 @@ class PfsenseApiApp(UserControl):
         self.cameras_status_text = Text(
             "Статус неизвестен, нет подключения", size=25, color=colors.AMBER_300
         )
-        self.router_status = Text("")
-        self.eh.get_router_status()
+        self.router_status_text = Text("")
+        
         # Alert instance
         self.alert = SnackBar(content=Text(""))
         self.default_nat_description = "miha-m-from-home"
@@ -84,16 +86,14 @@ class PfsenseApiApp(UserControl):
                 ),
             ],
         )
-
         self.secont_row_second_column = Column(
             controls=[
-                Text(value="Статус подключения:", size=15, text_align=TextAlign.START),
-                self.router_status,
+                Text(value="Статус подключения к роутеру:", size=15, text_align=TextAlign.START),
+                self.router_status_text,
             ]
         )
         self.second_row = Container(
             content=Row(
-                
                 controls=[self.second_row_first_column, self.secont_row_second_column],
             ),
             padding=5,
@@ -121,7 +121,6 @@ class PfsenseApiApp(UserControl):
                 ),
             ],
         )
-
         self.third_row = Container(
             content=Row(
                 expand=True,
@@ -160,15 +159,12 @@ class PfsenseApiApp(UserControl):
             padding=5,
             margin=margin.all(1),
         )
-        self.divider_row = Row(
-            controls=[Divider(height=5)],
-            expand=True,
-        )
 
         self.layout = [
             Column(
                 controls=[
                     self.first_row,
+                    Divider(height=3),
                     self.second_row,
                     self.third_row,
                     self.fourth_row,
@@ -192,6 +188,24 @@ class PfsenseApiApp(UserControl):
 
 
 def main(page: Page):
+    
+    # page.appbar = AppBar(
+    #         leading=Icon(icons.PALETTE),
+    #         leading_width=40,
+    #         title=Text("AppBar Example"),
+    #         center_title=False,
+    #         bgcolor=colors.SURFACE_VARIANT,
+    #         actions=[
+    #             IconButton(icons.WB_SUNNY_OUTLINED),
+    #             IconButton(icons.FILTER_3),
+    #             PopupMenuButton(
+    #                 items=[
+    #                     PopupMenuItem(text="Item 1"),
+    #                     PopupMenuItem(),  # divider
+    #                 ]
+    #             ),
+    #         ],
+    #     )
     page.title = f"Управление ВидеоКамерами {VERSION}"
     page.window_min_width = 800
     page.window_min_height = 700
@@ -205,6 +219,7 @@ def main(page: Page):
     page.on_resize = pfapi.page_resize
 
     page.add(pfapi)
+    
 
 
 flet.app(target=main)

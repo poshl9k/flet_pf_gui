@@ -27,6 +27,9 @@ from flet import (
 )
 from httphandler import HttpHandler
 import json
+from .alerts import Alerts
+import asyncio
+from threading import Thread
 
 
 class EventHandler:
@@ -39,18 +42,23 @@ class EventHandler:
         self.http_session = None
         self.nat_rules = list()
         self.nat_rule_desc = ""
+        self.router_status = None
 
     def handle_event(self, event):
         data = event.control.data
         if data == "Connect_to_router":
             self.connect_to_router()
-            # gui.cameras_status_text.value = "12344"
-            self.gui.update()
         if data == "enable_cameras":
             self.set_fw_nat_rule_enable(self.nat_rules)
+        if data == "disable_cameras":
+            self.set_fw_nat_rule_disable(self.nat_rules)
 
     def filter_nat_rules(self, nat_rule_desc):
-        fw_nat_rules = json.loads(self.http_session.get_fw_rules().text)["data"]
+        try:
+            self.nat_rules = []
+            fw_nat_rules = json.loads(self.http_session.get_fw_rules().text)["data"]
+        except Exception as error:
+            return self.alert(*Alerts.cant_connect)
         for id, rule in enumerate(fw_nat_rules):
             if nat_rule_desc in rule["descr"]:
                 if "disabled" in rule:
@@ -62,13 +70,14 @@ class EventHandler:
     def connect_to_router(self):
         if not self.http_session:
             self.http_session = HttpHandler("192.168.10.8", "admin", "123qwe123***")
+            # self.check_connection()
             self.get_router_status()
             self.get_fw_rule_status()
+        elif self.get_router_status():
+            self.alert(*Alerts.already_connected)
         else:
-            self.gui.alert.content = Text("Уже подключено!")
-            self.gui.alert.open = True
-            self.gui.alert.bgcolor = colors.GREEN_400
-            self.gui.update()
+            self.alert(*Alerts.cant_connect)
+        self.gui.update()
 
     def get_fw_rule_status(self):
         if self.gui.nat_rule_desc_input.value == "":
@@ -80,6 +89,8 @@ class EventHandler:
         disabled = [
             x["rule_status"] for x in self.nat_rules if x["rule_status"] == "disabled"
         ]
+        if not self.nat_rules or len(self.nat_rules) == 0:
+            return
         if len(disabled) > 0:
             self.gui.cameras_status_text.value = "Выключены"
             self.gui.cameras_status_text.color = colors.RED_400
@@ -88,22 +99,58 @@ class EventHandler:
             self.gui.cameras_status_text.color = colors.GREEN_400
 
     def get_router_status(self):
-        """
-        Purpose: self
-        """
-        if self.http_session == None:
+        try:
+            response = self.http_session.get_fw_rules()
+        except:
+            response = None
+        if response == None:
             router_status = "Не подключено"
-            self.gui.router_status.color = colors.RED_400
+            self.gui.router_status_text.color = colors.RED_400
+            self.gui.router_status_text.value = router_status
+            self.router_status = False
+            return False
         else:
             router_status = "Подключено"
-            self.gui.router_status.color = colors.GREEN_400
-        self.gui.router_status.value = router_status
+            self.gui.router_status_text.color = colors.GREEN_400
+            self.gui.router_status_text.value = router_status
+            self.router_status = True
+            return True
 
     def set_fw_rule_desc(self, desc=None):
         return self.gui.default_nat_description
 
     def set_fw_nat_rule_disable(self, rules):
-        response = self.http_session.set_fw_rules(rules, disable=False)
+        if not self.http_session:
+            return self.alert(*Alerts.no_session)
+        response = self.http_session.set_fw_rules(rules, disable=True)
+        if response[0].status_code == 200:
+            self.alert(*Alerts.successfully_disabled)
+        else:
+            self.alert(f"Запрос неудачен {response.status_code}")
+        self.get_fw_rule_status()
+        self.gui.update()
+        pass
 
     def set_fw_nat_rule_enable(self, rules):
-        response = self.http_session.set_fw_rules(rules, disable=True)
+        if not self.http_session:
+            return self.alert(*Alerts.no_session)
+
+        response = self.http_session.set_fw_rules(rules, disable=False)
+        if response[0].status_code == 200:
+            self.alert(*Alerts.successfully_enabled)
+        else:
+            self.alert(f"Запрос неудачен {response.status_code}")
+        self.get_fw_rule_status()
+        self.gui.update()
+        pass
+
+    def alert(self, alert_text, bgcolor):
+        self.gui.alert.content = Text(f"{alert_text}", size=20)
+        self.gui.alert.bgcolor = bgcolor
+        self.gui.alert.open = True
+        self.gui.update()
+
+    # Сделать поток с проверкой
+    def check_connection(self):
+        while True:
+            self.get_router_status()
