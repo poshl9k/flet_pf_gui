@@ -8,12 +8,7 @@ https://flet.dev/
 ```powershell
 flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
 ```
-# КОД
-```
-import shutil
 
-shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
-```
 Запаковка:
     flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
 
