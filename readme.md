@@ -1,7 +1,7 @@
 # GUI Сделан с помощью flet  
 https://flet.dev/  
 
-Запакован в exe с помощью fleet pack  
+Запакован в exe с помощью flet pack  
     pip install flet  
     или  
     pip install -r .\requirements.txt  
