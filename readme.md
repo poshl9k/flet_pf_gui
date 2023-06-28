@@ -33,10 +33,10 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
 "rule-desc": "home to VM-cisco-mgmt"
 }
 ```
-==address - IP адрес==
-==login - Логин от роутера==
-==password - Пароль от роутера==
-==rule-desc - описание правила на роутере==
+__address - IP адрес__
+__login - Логин от роутера__
+__password - Пароль от роутера__
+__rule-desc - описание правила на роутере__
 
 # Про описание:
     Если правило одно - рекомендую писать точно, копируя описание из правила на роутере
