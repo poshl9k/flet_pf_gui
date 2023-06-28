@@ -26,12 +26,12 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
     !Все значения должны быть в кавычках!
     Структура:\
     ```
-        {\
-        "address": "192.168.0.1",\
-        "login": "admin",\
-        "password": "123Pa$$word!",\
-        "rule-desc": "home to VM-cisco-mgmt"\
-        }\
+        {
+        "address": "192.168.0.1",
+        "login": "admin",
+        "password": "123Pa$$word!",
+        "rule-desc": "home to VM-cisco-mgmt"
+        }
     ```
     address - IP адрес\
     login - Логин от роутера\
