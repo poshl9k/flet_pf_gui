@@ -44,10 +44,10 @@ shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
             на роутере есть 2 правила ->
             "fuu bar camera-control"
             "baz bar camera-control"
-        #Если поле "rule-desc" будет "camera-control",
-        #То оба правила будут отфильтрованы 
-        #Если же поле "rule-desc" будет "fuu bar",
-        #То под фильтр попадет лишь одно правило -> "fuu bar camera-control"
+        Если поле "rule-desc" будет "camera-control",
+        То оба правила будут отфильтрованы 
+        Если же поле "rule-desc" будет "fuu bar",
+        То под фильтр попадет лишь одно правило -> "fuu bar camera-control"
 
 
         
