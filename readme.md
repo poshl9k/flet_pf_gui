@@ -1,15 +1,13 @@
-Запакован в exe с помощью pyinstaller
+# GUI Сделан с помощью flet  
+https://flet.dev/  
+
+Запакован в exe с помощью fleet pack
     pip install pyinstaller
     или 
     pip install -r .\requirements.txt
-
-
-Создать spec файл:
-    pyi-makespec --onefile --name pfsense_cam_control pfsense_gui.py
-
-
-В файл spec был добавлен код для копирования конфиг файла, в целом он не сильно нужен, так как создается в случае отсутствия
-
+```powershell
+flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
+```
 # КОД
 ```
 import shutil
@@ -17,7 +15,7 @@ import shutil
 shutil.copyfile('config.json', '{0}/config.json'.format(DISTPATH))
 ```
 Запаковка:
-    pyinstaller --clean .\pfsense_cam_control.spec
+    flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
 
     готовый .exe и конфигурационный файл будут в папке ./dist
 
