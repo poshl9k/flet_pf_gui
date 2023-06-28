@@ -11,3 +11,4 @@ class Alerts:
     successfully_enabled = ("Доступ успешно включен",colors.GREEN_400)
     successfully_disabled = ("Доступ успешно выключен",colors.GREEN_400)
     no_rules_found = ("Не найдено правил по описанию! Поправьте конфигурационный файл!",colors.RED_400)
+    wrong_login_password = ("Не верный логин или пароль",colors.RED_400)

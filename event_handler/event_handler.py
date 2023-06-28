@@ -117,6 +117,14 @@ class EventHandler:
             self.gui.router_status_text.value = router_status
             self.router_status = False
             return False
+        elif response.status_code == 401:
+            router_status = "Не верный логин или пароль"
+            self.gui.router_status_text.color = colors.RED_400
+            self.gui.router_status_text.value = router_status
+            self.router_status = False
+            self.alert(*Alerts.wrong_login_password)
+            return False
+            
         else:
             router_status = "Подключено"
             self.gui.router_status_text.color = colors.GREEN_400

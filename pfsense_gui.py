@@ -35,7 +35,7 @@ from flet import (
 from utils import ScreenRes
 from event_handler import EventHandler
 
-VERSION = "v 0.1"
+VERSION = "v 0.6"
 SCREEN_RESOLUTION = ScreenRes().resolution
 
 

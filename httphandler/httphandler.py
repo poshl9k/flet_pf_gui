@@ -52,9 +52,4 @@ class HttpHandler:
         return response
 
 
-# tests
-import json
 
-s = HttpHandler(address="192.168.10.8", login="admin", password="123qwe123***")
-response = json.loads(s.get_fw_rules().text)["data"]
-pass
