@@ -2,7 +2,7 @@ import json
 import os
 import sys
 from pathlib import Path, PurePath
-
+import logging
 
 class Config:
     def __init__(self) -> None:
@@ -21,7 +21,7 @@ class Config:
             self.ipaddress = config["address"]
             self.login = config["login"]
             self.password = config["password"]
-            self.rule_desc = config["rule-desc"]
+            self.rule_desc = config["rule-desc"].lower()
 
     def create_empty_config(self):
         conf_dict = {}

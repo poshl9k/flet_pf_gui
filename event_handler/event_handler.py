@@ -32,7 +32,7 @@ import asyncio
 from threading import Thread
 from config import Config
 
-
+import logging
 class EventHandler:
     """
     gui:PfsenseApiApp
@@ -40,11 +40,11 @@ class EventHandler:
 
     def __init__(self, gui) -> None:
         self.gui = gui
+        self.cf = Config()
         self.http_session = None
         self.nat_rules = list()
-        self.nat_rule_desc = ""
+        self.nat_rule_desc = self.cf.rule_desc
         self.router_status = None
-        self.cf = Config()
 
     def handle_event(self, event):
         data = event.control.data
@@ -62,7 +62,7 @@ class EventHandler:
         except Exception as error:
             return self.alert(*Alerts.cant_connect)
         for id, rule in enumerate(fw_nat_rules):
-            if nat_rule_desc in rule["descr"]:
+            if nat_rule_desc in rule["descr"].lower():
                 if "disabled" in rule:
                     rule_status = "disabled"
                 else:
@@ -84,11 +84,13 @@ class EventHandler:
         self.gui.update()
 
     def get_fw_rule_status(self):
-        if self.gui.nat_rule_desc_input.value == "":
-            self.nat_rule_desc = self.gui.default_nat_description
-        else:
-            self.nat_rule_desc = self.gui.nat_rule_desc_input.value
-        self.set_fw_rule_desc(desc=self.nat_rule_desc)
+        # Включить если надо руками вводить правило
+        
+        # if self.gui.nat_rule_desc_input.value == "":
+        #     self.nat_rule_desc = self.gui.default_nat_description
+        # else:
+        #     self.nat_rule_desc = self.gui.nat_rule_desc_input.value
+        # self.set_fw_rule_desc(desc=self.nat_rule_desc)
         self.filter_nat_rules(self.nat_rule_desc)
         disabled = [
             x["rule_status"] for x in self.nat_rules if x["rule_status"] == "disabled"
@@ -132,8 +134,8 @@ class EventHandler:
             self.router_status = True
             return True
 
-    def set_fw_rule_desc(self, desc=None):
-        return self.gui.default_nat_description
+    # def set_fw_rule_desc(self, desc=None):
+    #     return self.gui.default_nat_description
 
     def set_fw_nat_rule_disable(self, rules):
         if not self.http_session:

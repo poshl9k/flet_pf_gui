@@ -1,12 +1,17 @@
 from requests import Session
 from requests.adapters import HTTPAdapter
 import asyncio
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    filename="log.txt",
+    format="%(asctime)s %(levelname)s %(message)s",
+)
 
 
 class HttpHandler:
-    def __init__(
-        self, address: str = "192.168.0.150", login="admin", password="routeradmin789"
-    ) -> None:
+    def __init__(self, address, login, password) -> None:
         self.login = login
         self.password = password
         self.address = address
@@ -50,6 +55,3 @@ class HttpHandler:
                 )
             )
         return response
-
-
-

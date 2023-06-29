@@ -38,6 +38,7 @@ from event_handler import EventHandler
 VERSION = "v 0.6"
 SCREEN_RESOLUTION = ScreenRes().resolution
 
+import logging
 
 class PfsenseApiApp(UserControl):
     def build(self):
