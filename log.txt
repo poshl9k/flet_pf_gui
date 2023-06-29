@@ -36,3 +36,39 @@
 2023-06-29 16:30:00,921,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
 2023-06-29 16:30:01,526,INFO,page.on_event: _29 click 
 2023-06-29 16:30:01,701,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:38:40,497,INFO,Starting up TCP server on ('localhost', 55738)
+2023-06-29 16:38:40,503,INFO,App URL: tcp://localhost:55738
+2023-06-29 16:38:40,504,INFO,Connected to Flet app and handling user sessions...
+2023-06-29 16:38:40,504,INFO,Starting Flet View app...
+2023-06-29 16:38:40,507,INFO,Flet View found in: c:\Users\User\Documents\GitHub\flet_pf_gui\env\Lib\site-packages\flet\bin\flet\flet.exe
+2023-06-29 16:38:40,667,INFO,Session started: 
+2023-06-29 16:38:41,052,INFO,page.on_event: page change [{"i":"page","width":"784.0"},{"i":"page","height":"661.0"},{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"10.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:38:41,053,INFO,page.on_event: page resize 784.0,661.0
+2023-06-29 16:38:41,987,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:38:41,989,INFO,page.on_event: page window_event moved
+2023-06-29 16:38:42,543,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"false"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:38:42,547,INFO,page.on_event: page window_event blur
+2023-06-29 16:38:50,487,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:38:50,490,INFO,page.on_event: page window_event focus
+2023-06-29 16:38:50,544,INFO,page.on_event: _22 click 
+2023-06-29 16:39:03,199,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"false"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:39:03,210,INFO,page.on_event: page window_event blur
+2023-06-29 16:39:04,362,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:39:09,503,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:39:09,505,INFO,page.on_event: page window_event focus
+2023-06-29 16:39:09,552,INFO,page.on_event: _12 click 
+2023-06-29 16:39:09,554,INFO,COM182,Сессия создана
+2023-06-29 16:39:11,892,INFO,page.on_event: _22 click 
+2023-06-29 16:39:19,776,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"false"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:39:19,778,INFO,page.on_event: page window_event blur
+2023-06-29 16:40:19,193,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:40:23,734,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:40:23,736,INFO,page.on_event: page window_event focus
+2023-06-29 16:40:23,791,INFO,page.on_event: _29 click 
+2023-06-29 16:40:23,962,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:40:24,953,INFO,page.on_event: _22 click 
+2023-06-29 16:40:25,135,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:40:25,907,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"false"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:40:25,912,INFO,page.on_event: page window_event blur
+2023-06-29 16:40:32,833,INFO,page.on_event: page change [{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"-1535.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:40:32,835,INFO,page.on_event: page window_event focus

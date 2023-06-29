@@ -5,13 +5,13 @@ https://flet.dev/
     pip install flet  
     или  
     pip install -r .\requirements.txt  
+
+    
+
+#   Запаковка:
 ```powershell
-flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
+flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py --product-name "pfsense_cam_control" --product-version "0.7" --file-version "0.7" --file-description "Pfsense camera control" --copyright "https://github.com/poshl9k"
 ```
-
-Запаковка:
-    flet pack --icon .\icon.ico -n pfsense_cam_control .\pfsense_gui.py
-
     готовый .exe и конфигурационный файл будут в папке ./dist
 
 Настройка чеерз файл конфигурации config.json:  
