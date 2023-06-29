@@ -1,0 +1,38 @@
+2023-06-29 12:05:29,636,INFO,BLA
+2023-06-29 12:26:17,444,INFO,BLA
+2023-06-29 12:26:17,444,INFO,Starting up TCP server on ('localhost', 52437)
+2023-06-29 12:26:17,444,INFO,App URL: tcp://localhost:52437
+2023-06-29 12:26:17,459,INFO,Connected to Flet app and handling user sessions...
+2023-06-29 12:26:17,459,INFO,Starting Flet View app...
+2023-06-29 12:26:17,459,INFO,Flet View found in: c:\Users\User\Documents\GitHub\flet_pf_gui\env\Lib\site-packages\flet\bin\flet\flet.exe
+2023-06-29 12:26:17,656,INFO,Session started: 
+2023-06-29 12:26:18,037,INFO,page.on_event: page change [{"i":"page","width":"784.0"},{"i":"page","height":"661.0"},{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"10.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 12:26:18,039,INFO,page.on_event: page resize 784.0,661.0
+2023-06-29 12:35:36,238,INFO,COM182,������ �������
+2023-06-29 12:36:06,416,INFO,COM182,Сессия создана
+2023-06-29 16:29:45,936,INFO,Starting up TCP server on ('localhost', 55513)
+2023-06-29 16:29:45,942,INFO,App URL: tcp://localhost:55513
+2023-06-29 16:29:45,942,INFO,Connected to Flet app and handling user sessions...
+2023-06-29 16:29:45,943,INFO,Starting Flet View app...
+2023-06-29 16:29:45,945,INFO,Flet View found in: c:\Users\User\Documents\GitHub\flet_pf_gui\env\Lib\site-packages\flet\bin\flet\flet.exe
+2023-06-29 16:29:46,316,INFO,Session started: 
+2023-06-29 16:29:46,700,INFO,page.on_event: page change [{"i":"page","width":"784.0"},{"i":"page","height":"661.0"},{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"10.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:29:46,702,INFO,page.on_event: page resize 784.0,661.0
+2023-06-29 16:29:47,594,INFO,page.on_event: _12 click 
+2023-06-29 16:29:47,597,INFO,COM182,Сессия создана
+2023-06-29 16:29:47,764,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:29:47,870,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:29:58,474,INFO,Starting up TCP server on ('localhost', 55532)
+2023-06-29 16:29:58,481,INFO,App URL: tcp://localhost:55532
+2023-06-29 16:29:58,482,INFO,Connected to Flet app and handling user sessions...
+2023-06-29 16:29:58,482,INFO,Starting Flet View app...
+2023-06-29 16:29:58,484,INFO,Flet View found in: c:\Users\User\Documents\GitHub\flet_pf_gui\env\Lib\site-packages\flet\bin\flet\flet.exe
+2023-06-29 16:29:58,642,INFO,Session started: 
+2023-06-29 16:29:59,032,INFO,page.on_event: page change [{"i":"page","width":"784.0"},{"i":"page","height":"661.0"},{"i":"page","windowwidth":"800.0"},{"i":"page","windowheight":"700.0"},{"i":"page","windowtop":"10.0"},{"i":"page","windowleft":"10.0"},{"i":"page","windowminimized":"false"},{"i":"page","windowmaximized":"false"},{"i":"page","windowfocused":"true"},{"i":"page","windowfullscreen":"false"}]
+2023-06-29 16:29:59,034,INFO,page.on_event: page resize 784.0,661.0
+2023-06-29 16:29:59,392,INFO,page.on_event: _12 click 
+2023-06-29 16:29:59,394,INFO,COM182,Сессия создана
+2023-06-29 16:30:00,727,INFO,page.on_event: _22 click 
+2023-06-29 16:30:00,921,INFO,page.on_event: page change [{"i":"_33","open":"false"}]
+2023-06-29 16:30:01,526,INFO,page.on_event: _29 click 
+2023-06-29 16:30:01,701,INFO,page.on_event: page change [{"i":"_33","open":"false"}]

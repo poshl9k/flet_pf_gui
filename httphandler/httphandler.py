@@ -2,12 +2,20 @@ from requests import Session
 from requests.adapters import HTTPAdapter
 import asyncio
 import logging
+import os
+import socket
 
 logging.basicConfig(
     level=logging.INFO,
     filename="log.txt",
-    format="%(asctime)s %(levelname)s %(message)s",
+    encoding= 'utf-8',
+    style = '{',
+    format="{asctime},{levelname},{message}",
 )
+
+def log(text):
+    return logging.info(f"{socket.gethostname()},{text}")
+
 
 
 class HttpHandler:
@@ -16,6 +24,7 @@ class HttpHandler:
         self.password = password
         self.address = address
         self.sn = self.create_session()
+        log("Сессия создана")
 
     def create_session(self):
         sess = Session()
@@ -55,3 +64,5 @@ class HttpHandler:
                 )
             )
         return response
+
+# с = HttpHandler('1','2','3')
