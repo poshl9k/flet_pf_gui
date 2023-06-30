@@ -6,7 +6,11 @@ https://flet.dev/
     или  
     pip install -r .\requirements.txt  
 
-    
+# Установка пакета на pfsense  
+
+__для установки читать раздел Installation(https://github.com/jaredhendrickson13/pfsense-api#installation)__    
+
+
 
 #   Запаковка:
 ```powershell
