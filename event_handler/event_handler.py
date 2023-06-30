@@ -1,3 +1,4 @@
+import time
 import flet
 from flet import (
     Column,
@@ -32,7 +33,9 @@ import asyncio
 from threading import Thread
 from config import Config
 
-import logging
+
+from c_logger import CLogger
+
 class EventHandler:
     """
     gui:PfsenseApiApp
@@ -41,18 +44,23 @@ class EventHandler:
     def __init__(self, gui) -> None:
         self.gui = gui
         self.cf = Config()
+        self.logger = CLogger()
         self.http_session = None
         self.nat_rules = list()
         self.nat_rule_desc = self.cf.rule_desc
         self.router_status = None
+        self.logger.log("Цикл событий инициализирован")
 
     def handle_event(self, event):
         data = event.control.data
         if data == "Connect_to_router":
             self.connect_to_router()
+            self.logger.log("Подключение к роутеру")
         if data == "enable_cameras":
+            self.logger.log(f"Нажата кнопка Включить доступ камерам")
             self.set_fw_nat_rule_enable(self.nat_rules)
         if data == "disable_cameras":
+            self.logger.log(f"Нажата кнопка Вылючить доступ камерам")
             self.set_fw_nat_rule_disable(self.nat_rules)
 
     def filter_nat_rules(self, nat_rule_desc):
@@ -81,11 +89,12 @@ class EventHandler:
             self.alert(*Alerts.already_connected)
         else:
             self.alert(*Alerts.cant_connect)
+
         self.gui.update()
 
     def get_fw_rule_status(self):
         # Включить если надо руками вводить правило
-        
+
         # if self.gui.nat_rule_desc_input.value == "":
         #     self.nat_rule_desc = self.gui.default_nat_description
         # else:
@@ -126,7 +135,7 @@ class EventHandler:
             self.router_status = False
             self.alert(*Alerts.wrong_login_password)
             return False
-            
+
         else:
             router_status = "Подключено"
             self.gui.router_status_text.color = colors.GREEN_400
@@ -143,13 +152,18 @@ class EventHandler:
         if len(rules) == 0:
             return self.alert(*Alerts.no_rules_found)
         response = self.http_session.set_fw_rules(rules, disable=True)
-        if response[0].status_code == 200:
-            self.alert(*Alerts.successfully_disabled)
-        else:
-            self.alert(f"Запрос неудачен {response.status_code}")
+        try:
+            if response[0].status_code == 200:
+                self.alert(*Alerts.successfully_disabled)
+            else:
+                self.alert(f"Запрос неудачен {response.status_code}", colors.RED_500)
+                self.logger.log(f"Запрос неудачен {response.status_code}")
+        except Exception as error:
+            self.alert(f"Запрос неудачен {error}", colors.RED_500)
+            self.logger.log(f"Запрос неудачен {response.status_code}")
         self.get_fw_rule_status()
         self.gui.update()
-        pass
+        self.logger.log(f"Правило(а) включены {[x for x in rules]}")
 
     def set_fw_nat_rule_enable(self, rules):
         if not self.http_session:
@@ -157,13 +171,18 @@ class EventHandler:
         if len(rules) == 0:
             return self.alert(*Alerts.no_rules_found)
         response = self.http_session.set_fw_rules(rules, disable=False)
-        if response[0].status_code == 200:
-            self.alert(*Alerts.successfully_enabled)
-        else:
-            self.alert(f"Запрос неудачен {response.status_code}")
+        try:
+            if response[0].status_code == 200:
+                self.alert(*Alerts.successfully_enabled)
+            else:
+                self.alert(f"Запрос неудачен {response.status_code}", colors.RED_500)
+                self.logger.log(f"Запрос неудачен {response.status_code}")
+        except Exception as error:
+            self.alert(f"Запрос неудачен {error}", colors.RED_500)
+            self.logger.log(f"Запрос неудачен {response.status_code}")
         self.get_fw_rule_status()
         self.gui.update()
-        pass
+        self.logger.log(f"Правило(а) включены {[x for x in rules]}")
 
     def alert(self, alert_text, bgcolor):
         self.gui.alert.content = Text(f"{alert_text}", size=20)
@@ -175,3 +194,4 @@ class EventHandler:
     def check_connection(self):
         while True:
             self.get_router_status()
+            time.sleep(0.3)  # import time
