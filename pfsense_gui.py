@@ -35,10 +35,13 @@ from flet import (
 from utils import ScreenRes
 from event_handler import EventHandler
 
-VERSION = "v 0.7"
+import socket
+
+VERSION = "v 0.9"
 SCREEN_RESOLUTION = ScreenRes().resolution
 
-import logging
+
+# from c_logger import CLogger
 
 class PfsenseApiApp(UserControl):
     def build(self):
