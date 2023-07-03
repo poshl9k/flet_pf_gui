@@ -1,6 +1,7 @@
 import logging
 import socket
 import sys
+import os
 
 from pathlib import Path
 
@@ -35,5 +36,5 @@ class CLogger:
         logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
     def log(self, text):
-        return logging.verbose(f"{socket.gethostname()},{text}")
+        return logging.verbose(f"{socket.gethostname()},{os.getlogin()},{text}")
     
