@@ -36,6 +36,7 @@ from config import Config
 
 from c_logger import CLogger
 
+
 class EventHandler:
     """
     gui:PfsenseApiApp
@@ -48,7 +49,7 @@ class EventHandler:
         self.http_session = None
         self.nat_rules = list()
         self.nat_rule_desc = self.cf.rule_desc
-        self.router_status = None
+        self.router_status = False
         self.logger.log("Цикл событий инициализирован")
 
     def handle_event(self, event):
@@ -85,6 +86,9 @@ class EventHandler:
             # self.check_connection()
             self.get_router_status()
             self.get_fw_rule_status()
+            check_rule_thread = Thread(target=self.get_fw_rule_status_thread)
+            # check_rule_thread.daemon = True
+            check_rule_thread.start()
         elif self.get_router_status():
             self.alert(*Alerts.already_connected)
         else:
@@ -109,13 +113,18 @@ class EventHandler:
                 "Проверьте пункт rule-desc в файле конфигурации"
             )
             self.gui.cameras_status_text.color = colors.RED_500
+            self.gui.update()
             return self.alert(*Alerts.no_rules_found)
         if len(disabled) > 0:
             self.gui.cameras_status_text.value = "Выключены"
             self.gui.cameras_status_text.color = colors.RED_400
+            self.gui.update()
+            return False
         else:
             self.gui.cameras_status_text.value = "Включены"
             self.gui.cameras_status_text.color = colors.GREEN_400
+            self.gui.update()
+            return True
 
     def get_router_status(self):
         try:
@@ -191,7 +200,11 @@ class EventHandler:
         self.gui.update()
 
     # Сделать поток с проверкой
-    def check_connection(self):
+    def get_fw_rule_status_thread(self):
         while True:
-            self.get_router_status()
-            time.sleep(0.3)  # import time
+            if self.router_status:
+                self.get_fw_rule_status()
+            else:
+                self.logger.log("Нет подключения к роутеру")
+                pass
+            time.sleep(5)  # import time
